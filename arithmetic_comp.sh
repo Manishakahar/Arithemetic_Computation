@@ -31,12 +31,13 @@ echo "$a % $b + $c = ${dict[operation4]}"
 function sort()
 {
 	len=${#arr[@]}
+	sign=$1
 
 	for((i=0;i<len;i++))
 	do
 		for((j=i+1;j<=len;j++))
 		do
-			if [[ ${arr[i]%.*} -lt ${arr[j]%.*} ]]
+			if (( ${arr[i]%.*} $sign ${arr[j]%.*} ))
 			then
 				temp=${arr[j]}
 				arr[j]=${arr[i]}
@@ -52,6 +53,10 @@ dictToArray
 
 echo "Elements in Array Before Sort" ${arr[@]}
 
-sort
+sort '<'
 
 echo "Element in Array After Descending Sort " ${arr[@]}
+
+sort '>'
+
+echo "Element in Array after Ascending Sort " ${arr[@]}
