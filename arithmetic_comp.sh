@@ -28,6 +28,30 @@ echo "$a * $b + $c = ${dict[operation2]}"
 echo "$c + $a / $b = ${dict[operation3]}"
 echo "$a % $b + $c = ${dict[operation4]}"
 
+function sort()
+{
+	len=${#arr[@]}
+
+	for((i=0;i<len;i++))
+	do
+		for((j=i+1;j<=len;j++))
+		do
+			if [[ ${arr[i]%.*} -lt ${arr[j]%.*} ]]
+			then
+				temp=${arr[j]}
+				arr[j]=${arr[i]}
+				arr[i]=$temp
+			fi
+		done
+	done
+
+}
+
+
 dictToArray
 
-echo "Elements in Array " ${arr[@]}
+echo "Elements in Array Before Sort" ${arr[@]}
+
+sort
+
+echo "Element in Array After Descending Sort " ${arr[@]}
